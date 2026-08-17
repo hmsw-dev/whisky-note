@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="ウイスキーを分類別に調べて、飲んだ記録・飲みたいリスト・お気に入り・テイスティングメモを残せるアプリ">
+<meta name="theme-color" content="#1a1310">
+<title>Whisky Note — ウイスキー分類・銘柄ノート</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🥃</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a class="brand" href="#/">
+      <span class="brand-mark">🥃</span>
+      <span class="brand-text">
+        <strong>Whisky Note</strong>
+        <small>分類で知る、一杯で残す</small>
+      </span>
+    </a>
+
+    <form class="search" id="search-form" role="search">
+      <input type="search" id="search-input" placeholder="銘柄・分類・産地・味わいで検索" aria-label="検索">
+      <button type="submit" aria-label="検索する">検索</button>
+    </form>
+
+    <nav class="main-nav">
+      <a href="#/" data-nav="home">分類</a>
+      <a href="#/mypage" data-nav="mypage">マイページ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="app" class="app"></main>
+
+<footer class="site-footer">
+  <p>記録はこのブラウザの localStorage にのみ保存されます。<a href="#/mypage">マイページ</a>からバックアップできます。</p>
+  <p class="footnote">価格・度数は目安です。お酒は20歳になってから、適量を楽しみましょう。</p>
+</footer>
+
+<!-- メモ入力ダイアログ -->
+<div class="modal-backdrop" id="modal" hidden>
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-head">
+      <h2 id="modal-title">テイスティングメモ</h2>
+      <button type="button" class="icon-btn" id="modal-close" aria-label="閉じる">✕</button>
+    </div>
+    <form id="note-form" class="note-form">
+      <p class="modal-brand" id="modal-brand"></p>
+      <div class="field-row">
+        <label class="field">
+          <span>飲んだ日</span>
+          <input type="date" name="date">
+        </label>
+        <label class="field">
+          <span>飲んだ場所</span>
+          <input type="text" name="place" placeholder="自宅 / BAR ○○ など" maxlength="60">
+        </label>
+      </div>
+      <fieldset class="field rating-field">
+        <legend>評価</legend>
+        <div class="rating-input" id="rating-input"></div>
+      </fieldset>
+      <label class="field">
+        <span>感想</span>
+        <textarea name="comment" rows="5" placeholder="香り、味わい、そのときの状況など自由に" maxlength="1000"></textarea>
+      </label>
+      <div class="modal-actions">
+        <button type="button" class="btn ghost" id="modal-cancel">キャンセル</button>
+        <button type="submit" class="btn primary">保存する</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
